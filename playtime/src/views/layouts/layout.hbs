@@ -11,6 +11,11 @@
   <section class="section">
     <div class="container">
       {{> playtime-brand}}
+      {{#if menu}}
+        {{> menu}}
+      {{else}}
+        {{> welcome-menu}}
+      {{/if}}
       <hr>
       {{{content}}}
     </div>

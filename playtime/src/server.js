@@ -4,6 +4,7 @@ import Handlebars from 'handlebars';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import webRoutes from './web-routes.js';
+import { init as dbInit } from './models/db.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,6 +12,7 @@ const __dirname = dirname(__filename);
 const port = process.env.PORT || 3000;
 
 export const init = async () => {
+  dbInit();
   const server = Hapi.server({
     port,
     host: 'localhost',

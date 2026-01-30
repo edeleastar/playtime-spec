@@ -1,12 +1,13 @@
 {
   "name": "playtime",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Music playlist management web application",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "lint": "eslint .",
+    "test": "mocha --ui tdd 'test/**/*-test.js' --exit",
     "test:e2e": "playwright test"
   },
   "engines": {
@@ -15,9 +16,12 @@
   "dependencies": {
     "@hapi/hapi": "^21.0.0",
     "@hapi/vision": "^7.0.0",
-    "handlebars": "^4.7.8"
+    "handlebars": "^4.7.8",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",

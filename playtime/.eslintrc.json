@@ -9,6 +9,12 @@
     "ecmaVersion": 2022,
     "sourceType": "module"
   },
+  "overrides": [
+    {
+      "files": ["test/**/*.js"],
+      "env": { "mocha": true }
+    }
+  ],
   "rules": {
     "no-underscore-dangle": ["error", { "allow": ["_id", "__filename", "__dirname"] }],
     "import/extensions": ["error", "ignorePackages", { "js": "always" }],
