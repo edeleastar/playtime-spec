@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.0] - Playlists
+
+### Added
+
+- Playlist model: playlistMemStore with addPlaylist, getAllPlaylists, getPlaylistById, getUserPlaylists, deletePlaylistById, deleteAllPlaylists
+- db.js exports playlistStore; init() configures playlistStore
+- Playlist has userid; addPlaylist handler sets userid from request.auth.credentials
+- Dashboard: getUserPlaylists(logged-in user); list playlists in cards with link to detail
+- Partials: list-playlists.hbs, add-playlist.hbs
+- POST /dashboard/addplaylist, GET /playlist/{id}
+- Playlist controller: playlist detail view (empty tracks for 0.3.0)
+- playlist-view.hbs: playlist title, back to dashboard, placeholder for tracks
+- E2E playlists.spec.js: create playlist, see in list; open (empty); second user sees only own playlists
+- playlist-model-test.js: addPlaylist, getPlaylistById, getUserPlaylists, deletePlaylistById, deleteAllPlaylists
+
 ## [0.2.0] - Sessions
 
 ### Added

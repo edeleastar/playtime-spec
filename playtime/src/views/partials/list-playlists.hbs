@@ -1,0 +1,12 @@
+<div class="columns is-multiline">
+  {{#each playlists}}
+    <div class="column is-one-third">
+      <div class="box">
+        <a href="/playlist/{{_id}}" class="has-text-dark">
+          <span class="icon"><i class="fas fa-folder"></i></span>
+          {{title}}
+        </a>
+      </div>
+    </div>
+  {{/each}}
+</div>
