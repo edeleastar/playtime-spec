@@ -1,5 +1,13 @@
 import { userStore } from '../models/db.js';
 
+export const validate = async (request, session) => {
+  const user = await userStore.getUserById(session.id);
+  if (!user) {
+    return { isValid: false };
+  }
+  return { isValid: true, credentials: user };
+};
+
 export const index = (request, h) =>
   h.view('welcome-view', { title: 'Welcome' });
 
@@ -21,7 +29,11 @@ export const login = async (request, h) => {
   if (!user || user.password !== password) {
     return h.redirect('/');
   }
+  request.cookieAuth.set({ id: user._id });
   return h.redirect('/dashboard');
 };
 
-export const logout = (request, h) => h.redirect('/');
+export const logout = (request, h) => {
+  request.cookieAuth.clear();
+  return h.redirect('/');
+};
