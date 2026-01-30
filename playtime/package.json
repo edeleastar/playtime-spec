@@ -1,0 +1,28 @@
+{
+  "name": "playtime",
+  "version": "0.0.0",
+  "description": "Music playlist management web application",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "lint": "eslint .",
+    "test:e2e": "playwright test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.0.0",
+    "@hapi/vision": "^7.0.0",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "prettier": "^3.2.0",
+    "@playwright/test": "^1.40.0"
+  }
+}
