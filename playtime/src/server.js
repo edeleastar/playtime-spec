@@ -1,3 +1,4 @@
+import './load-env.js';
 import Hapi from '@hapi/hapi';
 import Vision from '@hapi/vision';
 import Cookie from '@hapi/cookie';

@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.5.0] - Persistence (Environment Configuration)
+
+### Added
+
+- **Environment Configuration (S-047–S-050):**
+  - dotenv: `dotenv` package; `src/load-env.js` loads `.env` before server; `process.env` values come from `.env` when present
+  - Cookie settings from environment: `cookie_name` and `cookie_password` read from `process.env` (with dev fallbacks)
+  - `.env_example`: template with `PORT`, `cookie_name`, `cookie_password` placeholders for setup
+  - `.env` listed in `.gitignore` so secrets are not committed
+
 ## [0.4.0] - Tracks
 
 ### Added
