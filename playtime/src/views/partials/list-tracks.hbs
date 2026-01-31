@@ -1,0 +1,24 @@
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Duration</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each playlist.tracks}}
+      <tr>
+        <td>{{title}}</td>
+        <td>{{artist}}</td>
+        <td>{{#if duration}}{{duration}}{{else}}—{{/if}}</td>
+        <td>
+          <a href="/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="button is-small is-danger is-light" title="Delete track" aria-label="Delete track">
+            <span class="icon"><i class="fas fa-trash"></i></span>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

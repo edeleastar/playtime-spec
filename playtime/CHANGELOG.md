@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.0] - Tracks
+
+### Added
+
+- Track model: trackMemStore with addTrack(playlistId, track), getAllTracks, getTrackById, getTracksByPlaylistId, deleteTrack, deleteAllTracks
+- Track has playlistid, title, artist, duration (optional)
+- db.js exports trackStore; init() configures trackStore
+- Playlist detail: getPlaylistById + getTracksByPlaylistId merged in controller; playlist-view shows tracks
+- Partials: list-tracks.hbs (table: title, artist, duration, delete), add-track.hbs (title, artist, duration)
+- POST /playlist/{id}/addtrack, GET /playlist/{id}/deletetrack/{trackid}
+- GET /dashboard/deleteplaylist/{id}; delete playlist removes its tracks then playlist
+- Delete button on playlist cards (list-playlists.hbs) and on track rows (list-tracks.hbs)
+- E2E tracks.spec.js: add track, see in list; delete track; delete playlist with tracks; dashboard → detail → back
+- track-model-test.js: addTrack, getTrackById, getTracksByPlaylistId, deleteTrack, deleteAllTracks
+
 ## [0.3.0] - Playlists
 
 ### Added

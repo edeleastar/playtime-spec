@@ -31,7 +31,7 @@ test.describe('Playlists', () => {
     await page.getByRole('link', { name: /My First Playlist/i }).first().click();
     await expect(page).toHaveURL(/\/playlist\/.+/);
     await expect(page.locator('body')).toContainText('My First Playlist');
-    await expect(page.locator('body')).toContainText('Tracks will appear here');
+    await expect(page.locator('body')).toContainText('Add track');
   });
 
   test('second user sees only own playlists', async ({ page }) => {

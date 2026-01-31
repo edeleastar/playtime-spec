@@ -11,7 +11,10 @@ const webRoutes = [
   { method: 'GET', path: '/logout', handler: accounts.logout },
   { method: 'GET', path: '/dashboard', handler: dashboard.index },
   { method: 'POST', path: '/dashboard/addplaylist', handler: dashboard.addPlaylist },
+  { method: 'GET', path: '/dashboard/deleteplaylist/{id}', handler: dashboard.deletePlaylist },
   { method: 'GET', path: '/playlist/{id}', handler: playlist.index },
+  { method: 'POST', path: '/playlist/{id}/addtrack', handler: playlist.addTrack },
+  { method: 'GET', path: '/playlist/{id}/deletetrack/{trackid}', handler: playlist.deleteTrack },
 ];
 
 export default webRoutes;
