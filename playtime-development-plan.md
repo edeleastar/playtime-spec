@@ -19,7 +19,7 @@ This document outlines the phased development approach for building the Playtime
 | 0.3.0   | Playlists   | In memory playlists, user-playlist association                                                   |
 | 0.4.0   | Tracks      | Tracks in playlists, support track and playlist delete                                           |
 | 0.5.0   | Persistence | JSON storage, environment config                                                                 |
-| 0.6.0   | Quality     | Joi & signup validation, testing framework, complete validation                                  |
+| 0.6.0   | Quality     | Joi & signup validation, complete validation, store robustness                                   |
 
 ### 1.2 Story Point Reference
 
@@ -470,16 +470,13 @@ Modified:
 
 ## 8. Version 0.6.0 - Quality
 
-**Theme:** Testing framework, Joi validation, complete validation.
+**Theme:** Joi validation, complete validation, store robustness.
 
 **Goals:**
 
-- Set up Mocha and Chai testing framework
-- Create test fixtures
-- Implement user model tests
 - Configure Joi and add signup validation (UserSpec, error partial)
-- Add validation to all remaining forms
-- Improve store robustness
+- Add validation to all remaining forms (login, playlist, track)
+- Improve store robustness (null returns, safe delete)
 
 ### 8.1 Stories
 
@@ -488,29 +485,9 @@ Modified:
 | ID    | Story                                                                                  | Points | Acceptance Criteria                                                     |
 | ----- | -------------------------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------- |
 | S-056 | As a developer, I want Joi configured as server validator so that schemas work         | 2      | Joi package installed; server.validator(Joi) called                     |
-| S-057 | As a developer, I want a UserSpec schema so that signup input is validated             | 2      | joi-schemas.js exports UserSpec with required fields                   |
-| S-058 | As a visitor, I want validation errors on signup so that I can fix mistakes            | 3      | failAction re-renders form with errors; error partial displays messages |
-| S-059 | As a developer, I want an error partial so that validation errors display consistently | 2      | error.hbs iterates errors array and shows messages                     |
-
-#### Epic: Testing Infrastructure
-
-| ID    | Story                                                                         | Points | Acceptance Criteria                                 |
-| ----- | ----------------------------------------------------------------------------- | ------ | --------------------------------------------------- |
-| S-060 | As a developer, I want Mocha and Chai configured so that I can write tests    | 2      | Packages installed; npm test script defined         |
-| S-061 | As a developer, I want test fixtures so that test data is reusable            | 2      | fixtures.js exports maggie user and testUsers array |
-| S-062 | As a developer, I want a test directory structure so that tests are organized | 1      | test/ directory with fixtures and test files        |
-
-#### Epic: User Model Tests
-
-| ID    | Story                                                                                  | Points | Acceptance Criteria                                             |
-| ----- | -------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------- |
-| S-063 | As a developer, I want a test for user creation so that addUser is verified            | 2      | Test creates user and asserts returned object matches           |
-| S-064 | As a developer, I want a test for delete all users so that deleteAll is verified       | 2      | Test verifies count goes to 0 after deleteAll                   |
-| S-065 | As a developer, I want tests for getting users so that retrieval is verified           | 3      | Tests verify getUserById and getUserByEmail return correct user |
-| S-066 | As a developer, I want a test for deleting one user so that deleteUserById is verified | 2      | Test verifies count decreases and user not found after delete   |
-| S-067 | As a developer, I want tests for not-found cases so that null is returned correctly    | 2      | Tests verify null for non-existent ID and email                 |
-| S-068 | As a developer, I want tests for bad parameters so that edge cases are handled         | 2      | Tests verify null for empty string and undefined params         |
-| S-069 | As a developer, I want a test for failed delete so that invalid ID is handled          | 2      | Test verifies count unchanged after delete with bad ID          |
+| S-057 | As a developer, I want a UserSpec schema so that signup input is validated             | 2      | joi-schemas.js exports UserSpec with required fields                    |
+| S-058 | As a visitor, I want validation errors on signup so that I can fix mistakes            | 3      | failAction re-renders form with errors; error partial displays messages  |
+| S-059 | As a developer, I want an error partial so that validation errors display consistently | 2      | error.hbs iterates errors array and shows messages                      |
 
 #### Epic: Store Robustness
 
@@ -542,14 +519,10 @@ Modified:
 ```
 + src/models/joi-schemas.js
 + src/views/partials/error.hbs
-+ test/
-    + fixtures.js
-    + users-model-test.js
-    + e2e/
-        + quality.spec.js
++ test/e2e/quality.spec.js
 
 Modified:
-~ package.json (joi, mocha, chai, test script)
+~ package.json (joi)
 ~ src/server.js (Joi validator)
 ~ src/web-routes.js (signup validation: UserSpec, failAction)
 ~ src/views/signup-view.hbs (error partial, payload re-population)
@@ -560,7 +533,7 @@ Modified:
 ~ src/controllers/playlist-controller.js (track validation)
 ```
 
-### 8.3 Version 0.6.0 Total: ~47 Story Points
+### 8.3 Version 0.6.0 Total: ~27 Story Points
 
 ---
 
@@ -576,8 +549,8 @@ Modified:
 | 0.3.0     | 11      | ~25      |
 | 0.4.0     | 14      | ~30      |
 | 0.5.0     | 11      | ~21      |
-| 0.6.0     | 24      | ~47      |
-| **Total** | **91**  | **~192** |
+| 0.6.0     | 15      | ~27      |
+| **Total** | **82**  | **~172** |
 
 ### 7.2 Feature Progression
 
@@ -600,7 +573,7 @@ v0.4.0: [Track Model] [Playlist Detail] [Delete Operations] [E2E Tracks] [Track 
 v0.5.0: [JSON Storage] [Environment Config] [E2E Persistence & Validation]
            │
            ▼
-v0.6.0: [Joi & Signup Validation] [Testing Framework] [Complete Validation] [Store Robustness] [E2E Validation Forms]
+v0.6.0: [Joi & Signup Validation] [Complete Validation] [Store Robustness] [E2E Validation Forms]
 ```
 
 ### 7.3 Risk Mitigation
@@ -736,14 +709,6 @@ S-051, S-052, S-053, S-054, S-055
 ### E2E Persistence and Validation (Testing)
 
 T-012, T-013
-
-### Testing Infrastructure
-
-S-060, S-061, S-062
-
-### User Model Tests
-
-S-063, S-064, S-065, S-066, S-067, S-068, S-069
 
 ### Store Robustness
 

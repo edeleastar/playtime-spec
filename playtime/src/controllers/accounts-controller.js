@@ -21,6 +21,24 @@ export const showLogin = (request, h) => {
   return h.view('login-view', { title: 'Log in', error });
 };
 
+export const signupFailAction = (request, h, err) =>
+  h
+    .view('signup-view', {
+      title: 'Sign up',
+      errors: err.details,
+      payload: request.payload,
+    })
+    .takeover();
+
+export const loginFailAction = (request, h, err) =>
+  h
+    .view('login-view', {
+      title: 'Log in',
+      errors: err.details,
+      payload: request.payload,
+    })
+    .takeover();
+
 export const signup = async (request, h) => {
   const { firstName, lastName, email, password } = request.payload;
   const existing = await userStore.getUserByEmail(email);

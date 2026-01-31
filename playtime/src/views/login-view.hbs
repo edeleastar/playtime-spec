@@ -5,11 +5,12 @@
     Invalid email or password.
   </div>
   {{/if}}
+  {{> error}}
   <form method="post" action="/authenticate" class="box">
     <div class="field">
       <label class="label" for="email">Email</label>
       <div class="control">
-        <input class="input" id="email" name="email" type="email" required>
+        <input class="input" id="email" name="email" type="email" value="{{payload.email}}" required>
       </div>
     </div>
     <div class="field">

@@ -2,19 +2,19 @@
   <div class="field">
     <label class="label" for="title">Title</label>
     <div class="control">
-      <input class="input" id="title" name="title" type="text" required placeholder="Track title">
+      <input class="input" id="title" name="title" type="text" value="{{payload.title}}" placeholder="Track title">
     </div>
   </div>
   <div class="field">
     <label class="label" for="artist">Artist</label>
     <div class="control">
-      <input class="input" id="artist" name="artist" type="text" required placeholder="Artist name">
+      <input class="input" id="artist" name="artist" type="text" value="{{payload.artist}}" placeholder="Artist name">
     </div>
   </div>
   <div class="field">
     <label class="label" for="duration">Duration (seconds)</label>
     <div class="control">
-      <input class="input" id="duration" name="duration" type="number" min="0" step="1" placeholder="Optional">
+      <input class="input" id="duration" name="duration" type="number" min="0" step="1" value="{{payload.duration}}" placeholder="Optional">
     </div>
   </div>
   <div class="field">

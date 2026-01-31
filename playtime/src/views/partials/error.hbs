@@ -1,0 +1,9 @@
+{{#if errors}}
+<div class="notification is-danger" data-testid="validation-errors">
+  <ul>
+    {{#each errors}}
+    <li>{{message}}</li>
+    {{/each}}
+  </ul>
+</div>
+{{/if}}

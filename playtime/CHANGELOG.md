@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.6.0] - Quality
+
+### Added
+
+- **Joi and signup validation (S-056–S-059):**
+  - Joi: `joi` package; `server.validator(Joi)` in server.js
+  - `src/models/joi-schemas.js`: UserSpec, UserCredentialsSpec, PlaylistSpec, TrackSpec
+  - Signup: validate payload with UserSpec; failAction re-renders signup-view with errors and payload
+  - `src/views/partials/error.hbs`: iterates errors array and shows messages (`data-testid="validation-errors"`)
+  - Signup view: error partial, payload re-population (firstName, lastName, email)
+
+- **Store robustness (S-070–S-072):**
+  - user-json-store: getUserById and getUserByEmail return `?? null`; deleteUserById checks index !== -1 before splice
+
+- **Complete validation (S-073–S-078):**
+  - Login: UserCredentialsSpec, failAction re-renders login-view with errors and payload
+  - Add playlist: PlaylistSpec (required title), failAction re-renders dashboard with errors and payload
+  - Add track: TrackSpec (required title/artist, optional duration), failAction re-renders playlist-view with errors and payload
+  - Views: login-view, dashboard-view, playlist-view include error partial; add-playlist and add-track re-populate from payload
+
+- **E2E validation forms (T-014):**
+  - `test/e2e/quality.spec.js`: invalid playlist title (empty) and invalid track input (empty title/artist) show validation errors
+
 ## [0.5.0] - Persistence
 
 ### Added

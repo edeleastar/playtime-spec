@@ -1,5 +1,6 @@
 import './load-env.js';
 import Hapi from '@hapi/hapi';
+import Joi from 'joi';
 import Vision from '@hapi/vision';
 import Cookie from '@hapi/cookie';
 import Handlebars from 'handlebars';
@@ -24,6 +25,7 @@ export const init = async () => {
     host: 'localhost',
   });
 
+  server.validator(Joi);
   await server.register(Vision);
   await server.register(Cookie);
 
