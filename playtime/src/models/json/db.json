@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "_id": "4bbcebf8-ce0f-4efc-a0ff-2cd93e627019",
+      "firstName": "a",
+      "lastName": "a",
+      "email": "a@b.com",
+      "password": "a"
+    }
+  ],
+  "playlists": [
+    {
+      "_id": "10238e5d-5e4c-407b-a9fc-c7feba114963",
+      "userid": "5b06a80b-4558-432f-b58a-ea10c81e59bf",
+      "title": "Test Playlist"
+    },
+    {
+      "_id": "53b74e2c-daae-4ae4-9a6c-c60791fdc5ce",
+      "userid": "4bbcebf8-ce0f-4efc-a0ff-2cd93e627019",
+      "title": "aaa"
+    },
+    {
+      "_id": "5374ea32-d4f4-4c28-8cec-5f0cc1e4e69d",
+      "userid": "4bbcebf8-ce0f-4efc-a0ff-2cd93e627019",
+      "title": "aaa"
+    }
+  ],
+  "tracks": []
+}

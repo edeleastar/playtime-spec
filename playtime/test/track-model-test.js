@@ -1,12 +1,18 @@
 import { suite, test } from 'mocha';
 import { assert } from 'chai';
-import { userStore, playlistStore, trackStore } from '../src/models/db.js';
+import {
+  userStore,
+  playlistStore,
+  trackStore,
+  init,
+} from '../src/models/db.js';
 import { testUser } from './fixtures.js';
 
 suite('Track store', () => {
   let testPlaylistId;
 
   setup(async () => {
+    await init();
     await trackStore.deleteAllTracks();
     await playlistStore.deleteAllPlaylists();
     await userStore.deleteAll();

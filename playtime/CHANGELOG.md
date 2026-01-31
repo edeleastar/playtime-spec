@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.5.0] - Persistence (Environment Configuration)
+## [0.5.0] - Persistence
 
 ### Added
 
@@ -13,6 +13,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Cookie settings from environment: `cookie_name` and `cookie_password` read from `process.env` (with dev fallbacks)
   - `.env_example`: template with `PORT`, `cookie_name`, `cookie_password` placeholders for setup
   - `.env` listed in `.gitignore` so secrets are not committed
+
+- **JSON File Storage (S-051–S-055):**
+  - lowdb: `lowdb` package; `src/models/json/store-utils.js` configures `JSONFilePreset('db.json', defaultData)` with `users`, `playlists`, `tracks` arrays
+  - `src/models/json/db.json`: initial file; store-utils creates/reads it via lowdb
+  - `user-json-store.js`: UserStore interface (getAllUsers, addUser, getUserById, getUserByEmail, deleteUserById, deleteAll) with db.read/write via lowdb
+  - `playlist-json-store.js`: PlaylistStore interface (getAllPlaylists, addPlaylist, getPlaylistById, getUserPlaylists, deletePlaylistById, deleteAllPlaylists)
+  - `track-json-store.js`: TrackStore interface (getAllTracks, addTrack, getTrackById, getTracksByPlaylistId, deleteTrack, deleteAllTracks)
+  - `db.js`: `init()` is async; calls `await initJsonStore()` then assigns `userStore`, `playlistStore`, `trackStore` to JSON stores; server calls `await dbInit()` so data persists across restarts
+  - Unit tests still use in-memory stores (they do not call `db.init()`)
 
 ## [0.4.0] - Tracks
 

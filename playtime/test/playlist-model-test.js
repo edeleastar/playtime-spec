@@ -1,12 +1,13 @@
 import { suite, test } from 'mocha';
 import { assert } from 'chai';
-import { userStore, playlistStore } from '../src/models/db.js';
+import { userStore, playlistStore, init } from '../src/models/db.js';
 import { testUser } from './fixtures.js';
 
 suite('Playlist store', () => {
   let testUserId;
 
   setup(async () => {
+    await init();
     await playlistStore.deleteAllPlaylists();
     await userStore.deleteAll();
     const user = await userStore.addUser(testUser);
@@ -36,7 +37,10 @@ suite('Playlist store', () => {
       email: 'other@test.com',
       password: 'x',
     });
-    await playlistStore.addPlaylist({ userid: otherUser._id, title: 'Other List' });
+    await playlistStore.addPlaylist({
+      userid: otherUser._id,
+      title: 'Other List',
+    });
     const userPlaylists = await playlistStore.getUserPlaylists(testUserId);
     assert.equal(userPlaylists.length, 2);
     assert.isTrue(userPlaylists.every((p) => p.userid === testUserId));

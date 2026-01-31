@@ -18,7 +18,7 @@ const cookiePassword =
   process.env.cookie_password || 'dev-password-32-chars-minimum!!!';
 
 export const init = async () => {
-  dbInit();
+  await dbInit();
   const server = Hapi.server({
     port,
     host: 'localhost',

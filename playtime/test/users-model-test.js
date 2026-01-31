@@ -1,10 +1,11 @@
 import { suite, test } from 'mocha';
 import { assert } from 'chai';
-import { userStore } from '../src/models/db.js';
+import { userStore, init } from '../src/models/db.js';
 import { testUser } from './fixtures.js';
 
 suite('User store', () => {
   setup(async () => {
+    await init();
     await userStore.deleteAll();
   });
 

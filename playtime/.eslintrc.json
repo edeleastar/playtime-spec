@@ -18,6 +18,7 @@
   "rules": {
     "no-underscore-dangle": ["error", { "allow": ["_id", "__filename", "__dirname"] }],
     "import/extensions": ["error", "ignorePackages", { "js": "always" }],
+    "import/no-unresolved": ["error", { "ignore": ["^lowdb/node$"] }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": [".*.js", "**/*.config.js", "test/**"] }],
     "no-console": "off",
     "import/prefer-default-export": "off"
