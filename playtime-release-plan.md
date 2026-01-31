@@ -1,13 +1,13 @@
 # Playtime - Release Plan
 
 **Document Type:** Release Plan  
-**Target Version:** 0.6.0
+**Target Version:** 0.7.0
 
 ---
 
 ## 1. Overview
 
-This document is the high-level release plan for the Playtime application. The plan is organized into seven releases (0.0.0–0.6.0), each building incrementally on the previous version. Detailed stories, acceptance criteria, and deliverables for each version are in the **tasks** folder:
+This document is the high-level release plan for the Playtime application. The plan is organized into eight releases (0.0.0–0.7.0), each building incrementally on the previous version. Detailed stories, acceptance criteria, and deliverables for each version are in the **tasks** folder:
 
 - [tasks/v0.0.0-skeleton.md](tasks/v0.0.0-skeleton.md) – Skeleton
 - [tasks/v0.1.0-foundation.md](tasks/v0.1.0-foundation.md) – Foundation
@@ -16,6 +16,7 @@ This document is the high-level release plan for the Playtime application. The p
 - [tasks/v0.4.0-tracks.md](tasks/v0.4.0-tracks.md) – Tracks
 - [tasks/v0.5.0-persistence.md](tasks/v0.5.0-persistence.md) – Persistence
 - [tasks/v0.6.0-quality.md](tasks/v0.6.0-quality.md) – Quality
+- [tasks/v0.7.0-mongodb.md](tasks/v0.7.0-mongodb.md) – MongoDB
 
 ### 1.1 Release Summary
 
@@ -28,6 +29,7 @@ This document is the high-level release plan for the Playtime application. The p
 | 0.4.0   | Tracks      | Tracks in playlists, support track and playlist delete                                           |
 | 0.5.0   | Persistence | JSON storage, environment config                                                                 |
 | 0.6.0   | Quality     | Joi & signup validation, complete validation, store robustness                                   |
+| 0.7.0   | MongoDB     | Mongoose/MongoDB model implementation, Mongo store unit and E2E tests                           |
 
 ### 1.2 Story Point Reference
 
@@ -52,7 +54,8 @@ This document is the high-level release plan for the Playtime application. The p
 | 0.4.0     | 14      | ~30      |
 | 0.5.0     | 11      | ~21      |
 | 0.6.0     | 15      | ~27      |
-| **Total** | **82**  | **~172** |
+| 0.7.0     | 11      | ~30      |
+| **Total** | **93**  | **~202** |
 
 ---
 
@@ -78,6 +81,9 @@ v0.5.0: [JSON Storage] [Environment Config] [E2E Persistence & Validation]
            │
            ▼
 v0.6.0: [Joi & Signup Validation] [Complete Validation] [Store Robustness] [E2E Validation Forms]
+           │
+           ▼
+v0.7.0: [Mongoose/MongoDB] [Mongo Stores] [Mongo Store Unit Tests] [E2E MongoDB]
 ```
 
 ---
@@ -86,8 +92,9 @@ v0.6.0: [Joi & Signup Validation] [Complete Validation] [Store Robustness] [E2E 
 
 | Risk                     | Mitigation                                                    |
 | ------------------------ | ------------------------------------------------------------- |
-| Data loss (v0.1.0-0.4.0) | Memory stores acceptable for dev; JSON storage in v0.5.0      |
+| Data loss (v0.1.0-0.4.0) | Memory stores acceptable for dev; JSON storage in v0.5.0; MongoDB option in v0.7.0 |
 | Security gaps            | Plain text passwords documented; HTTPS/hashing as future work  |
+| MongoDB unavailable      | Mongo stores optional; JSON or mem used when MONGO_URI not set; E2E can run without Mongo |
 | Incomplete validation    | Progressive validation: Joi and signup in v0.6.0, all forms in v0.6.0 |
 | No tests early           | E2E smoke in v0.0.0; unit framework and User store tests in v0.1.0; tests grow with each version |
 
@@ -233,3 +240,27 @@ S-073, S-074, S-075, S-076, S-077, S-078
 ### E2E Validation Forms (Testing)
 
 T-014
+
+### MongoDB Configuration
+
+S-079, S-080
+
+### Mongoose Models
+
+S-081, S-082, S-083
+
+### Mongo Store Implementation
+
+S-084, S-085, S-086
+
+### Store Selection
+
+S-087
+
+### Unit Tests – Mongo Stores (Testing)
+
+T-015
+
+### E2E MongoDB (Testing)
+
+T-016

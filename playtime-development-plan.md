@@ -11,5 +11,6 @@
   - [v0.4.0-tracks.md](tasks/v0.4.0-tracks.md)
   - [v0.5.0-persistence.md](tasks/v0.5.0-persistence.md)
   - [v0.6.0-quality.md](tasks/v0.6.0-quality.md)
+  - [v0.7.0-mongodb.md](tasks/v0.7.0-mongodb.md)
 
 Use the release plan for the big picture and the version task files for detailed stories, acceptance criteria, and deliverables.
