@@ -1,0 +1,53 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e6]: 
+    - generic [ref=e7]: Playtime
+  - navigation [ref=e8]:
+    - generic [ref=e11]:
+      - generic [ref=e12]: Maggie Test
+      - generic [ref=e13]:
+        - link "Dashboard" [ref=e14] [cursor=pointer]:
+          - /url: /dashboard
+        - link "Log out" [ref=e15] [cursor=pointer]:
+          - /url: /logout
+  - separator [ref=e16]
+  - generic [ref=e17]:
+    - paragraph [ref=e18]:
+      - link " Back to dashboard" [ref=e19] [cursor=pointer]:
+        - /url: /dashboard
+        - generic [ref=e21]: 
+        - text: Back to dashboard
+    - heading "Persistence Test Playlist" [level=1] [ref=e22]
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: Title
+        - textbox "Title" [ref=e27]:
+          - /placeholder: Track title
+      - generic [ref=e28]:
+        - generic [ref=e29]: Artist
+        - textbox "Artist" [ref=e31]:
+          - /placeholder: Artist name
+      - generic [ref=e32]:
+        - generic [ref=e33]: Duration (seconds)
+        - spinbutton "Duration (seconds)" [ref=e35]
+      - button "Add track" [ref=e38] [cursor=pointer]
+    - table [ref=e39]:
+      - rowgroup [ref=e40]:
+        - row "Title Artist Duration" [ref=e41]:
+          - columnheader "Title" [ref=e42]
+          - columnheader "Artist" [ref=e43]
+          - columnheader "Duration" [ref=e44]
+          - columnheader [ref=e45]
+      - rowgroup [ref=e46]:
+        - row "Persistence Test Track Persistence Test Artist — Delete track" [ref=e47]:
+          - cell "Persistence Test Track" [ref=e48]
+          - cell "Persistence Test Artist" [ref=e49]
+          - cell "—" [ref=e50]
+          - cell "Delete track" [ref=e51]:
+            - link "Delete track" [ref=e52] [cursor=pointer]:
+              - /url: /playlist/bf87a2f9-eb0f-434c-91ba-a4eb501a62b3/deletetrack/7cc8e268-bd24-4485-aec1-a1911aa05a27
+              - generic [ref=e54]: 
+```

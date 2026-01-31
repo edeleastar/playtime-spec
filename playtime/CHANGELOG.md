@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.7.0] - MongoDB
+
+### Added
+
+- **MongoDB configuration (S-079–S-080):**
+  - Mongoose: `mongoose` package; `src/models/mongo/connection.js` connects using `process.env.MONGO_URI`
+  - `.env_example`: optional `MONGO_URI` for MongoDB; when set, app uses Mongo stores instead of JSON file storage
+
+- **Mongoose models (S-081–S-083):**
+  - `src/models/mongo/user-model.js`: User schema (firstName, lastName, email, password; string _id)
+  - `src/models/mongo/playlist-model.js`: Playlist schema (title, userid; string _id)
+  - `src/models/mongo/track-model.js`: Track schema (title, artist, duration, playlistid; string _id)
+
+- **Mongo store implementation (S-084–S-086):**
+  - `src/models/mongo/user-mongo-store.js`: UserStore API (addUser, getAllUsers, getUserById, getUserByEmail, deleteUserById, deleteAll)
+  - `src/models/mongo/playlist-mongo-store.js`: PlaylistStore API; getPlaylistById includes tracks from Track collection
+  - `src/models/mongo/track-mongo-store.js`: TrackStore API (addTrack, getTrackById, getTracksByPlaylistId, deleteTrack, deleteAllTracks)
+
+- **Store selection (S-087):**
+  - `db.js`: when `MONGO_URI` is set, `init()` connects to Mongo and assigns userStore, playlistStore, trackStore to Mongo stores; otherwise uses JSON stores as before
+
+- **Mongo store unit tests (T-015):**
+  - `test/mongo-stores-test.js`: User, Playlist, Track store CRUD tests; runs when `MONGO_URI` is set (e.g. `MONGO_URI=mongodb://localhost:27017/playtime_test npm test`)
+
+- **E2E MongoDB (T-016):**
+  - `test/e2e/mongodb.spec.js`: full flow (register, login, create playlist/track, logout, login, verify data); works with Mongo or JSON backend
+  - Playwright `webServer.env`: passes `MONGO_URI` to server when set so E2E can run against Mongo (`MONGO_URI=mongodb://... npm run test:e2e`)
+
 ## [0.6.0] - Quality
 
 ### Added

@@ -18,7 +18,10 @@ export default defineConfig({
   webServer: {
     command: 'node src/server.js',
     url: `http://localhost:${testPort}`,
-    env: { PORT: String(testPort) },
+    env: {
+      PORT: String(testPort),
+      ...(process.env.MONGO_URI && { MONGO_URI: process.env.MONGO_URI }),
+    },
     reuseExistingServer: false,
   },
 });
