@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 const testPort = process.env.TEST_PORT || process.env.PORT || 3001;
 
 export default defineConfig({
+  globalTeardown: './test/e2e/global-teardown.js',
   testDir: './test/e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -18,6 +19,6 @@ export default defineConfig({
     command: 'node src/server.js',
     url: `http://localhost:${testPort}`,
     env: { PORT: String(testPort) },
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
   },
 });

@@ -24,13 +24,14 @@ test.describe('Auth flow', () => {
     await expect(page).toHaveURL('/');
   });
 
-  test('invalid login redirects to home', async ({ page }) => {
+  test('invalid login shows validation error', async ({ page }) => {
     await page.goto('/login');
     await page.getByLabel(/email/i).fill('nobody@test.com');
     await page.getByLabel(/password/i).fill('wrong');
     await page.getByRole('button', { name: /log in/i }).click();
 
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL(/\/login/);
+    await expect(page.getByTestId('login-error')).toContainText('Invalid email or password');
   });
 });
 

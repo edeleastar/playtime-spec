@@ -23,6 +23,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - `db.js`: `init()` is async; calls `await initJsonStore()` then assigns `userStore`, `playlistStore`, `trackStore` to JSON stores; server calls `await dbInit()` so data persists across restarts
   - Unit tests still use in-memory stores (they do not call `db.init()`)
 
+- **E2E Persistence and Validation (T-012, T-013):**
+  - `test/e2e/persistence.spec.js`: create user, playlist, track via UI; assert data in `db.json`; log out, log in again; confirm playlist and track still visible (data survives)
+  - Invalid login: redirect to `/login?error=invalid`; login view shows "Invalid email or password" (`data-testid="login-error"`)
+  - Duplicate signup: redirect to `/signup?error=duplicate`; signup view shows "Email already registered" (`data-testid="signup-error"`)
+  - `accounts-controller`: `showLogin`/`showSignup` pass `error` from query; `login` and `signup` handlers set redirect with `?error=...` on failure; signup checks existing email before add
+  - Auth spec: "invalid login shows validation error" expects `/login` and error message; persistence spec: "Validation" describe with invalid login and duplicate signup tests
+
 ## [0.4.0] - Tracks
 
 ### Added

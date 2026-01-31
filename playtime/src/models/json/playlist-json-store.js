@@ -43,6 +43,7 @@ export const playlistJsonStore = {
 
   async deleteAllPlaylists() {
     await getDb().update((data) => {
+      /* eslint-disable-next-line no-param-reassign -- lowdb update() expects mutation */
       data.playlists = [];
     });
   },

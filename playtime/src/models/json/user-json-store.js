@@ -45,6 +45,7 @@ export const userJsonStore = {
 
   async deleteAll() {
     await getDb().update((data) => {
+      /* eslint-disable-next-line no-param-reassign -- lowdb update() expects mutation */
       data.users = [];
     });
   },
